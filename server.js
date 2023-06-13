@@ -182,7 +182,7 @@ app.post("/login",async(req,res)=>{
     !isPasswordValid && res.status(400).json({message: "Username or password is not correct"});
 
     const token = jwt.sign({id:user._id},process.env.SECRET);
-    return res.json({...user})
+    return res.json(user)
 })
 
 app.listen(_PORT,()=>{
