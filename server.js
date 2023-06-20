@@ -342,6 +342,34 @@ app.post("/addExam", async (req, res) => {
 
 })
 
+// delete exam by id
+app.delete("/deleteExam/:id", async (req, res) => {
+  const { examid } = req.params;
+
+  try {
+    // Find the exam by id
+    const exam = await ExamModel.findOne({ examid });
+
+    // If exam doesn't exist, return an error message
+    if (!exam) {
+      return res.status(404).json({ message: "Exam not found" });
+    }
+
+    // Delete the exam from the database
+    await ExamModel.deleteOne({ examid });
+
+    return res.json({ message: "Exam deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ error: "An error occurred while deleting the Exam" });
+  }
+});
+
+// exam get request
+app.get("/Exams", async (req, res) => {
+  const exams = await ExamModel.find();
+  res.json(exams);
+});
+
 /* ---------------------------------------------------------------------- */
 app.post("/register", async (req, res) => {
   const { username, password } = req.body
