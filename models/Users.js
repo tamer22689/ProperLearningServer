@@ -20,6 +20,10 @@ const UserSchema = new Schema({
         type:Boolean,
         default:false
     },
+    courses:{
+        type: Array,
+        default:[]
+    }
 });
 
 const UserModel = model("users",UserSchema);

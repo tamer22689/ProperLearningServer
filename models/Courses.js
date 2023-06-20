@@ -19,6 +19,9 @@ const CourseSchema = new Schema({
     rating:{
         type:Number
     },
+    exams:{
+        type:Array
+    }
 });
 
 
